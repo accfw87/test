@@ -81,12 +81,13 @@ Nodes:
 
 
 
+
   - PanelType: "NewV2board" # Panel type: SSpanel, NewV2board, PMpanel, Proxypanel, V2RaySocks, GoV2Panel
     ApiConfig:
       ApiHost: "https://nd.gotofast.online"
       ApiKey: "lalallalalalalallala"
       NodeID: 46
-      NodeType: Shadowsocks # Node type: V2ray, Vmess, Vless, Shadowsocks, Trojan, Shadowsocks-Plugin
+      NodeType: Vmess # Node type: V2ray, Vmess, Vless, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
       SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
