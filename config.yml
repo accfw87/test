@@ -17,7 +17,7 @@ Nodes:
     ApiConfig:
       ApiHost: "https://nd.gotofast.online"
       ApiKey: "lalallalalalalallala"
-      NodeID: 64
+      NodeID: 58
       NodeType: Vmess # Node type: V2ray, Vmess, Vless, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
@@ -86,7 +86,7 @@ Nodes:
     ApiConfig:
       ApiHost: "https://nd.gotofast.online"
       ApiKey: "lalallalalalalallala"
-      NodeID: 46
+      NodeID: 33
       NodeType: Vmess # Node type: V2ray, Vmess, Vless, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
