@@ -17,34 +17,8 @@
             "Core": "xray",
             "ApiHost": "https://nd.dofast.pro",
             "ApiKey": "lalallalalalalallala",
-            "NodeID": 64,
+            "NodeID": 58,
             "NodeType": "vmess",
-            "Timeout": 30,
-            "ListenIP": "0.0.0.0",
-            "SendIP": "0.0.0.0",
-            "DeviceOnlineMinTraffic": 200,
-            "EnableProxyProtocol": false,
-            "EnableUot": true,
-            "EnableTFO": true,
-            "DNSType": "UseIPv4",
-            "CertConfig": {
-                "CertMode": "http",
-                "RejectUnknownSni": false,
-                "CertDomain": "hk34.outdoms.pro",
-                "CertFile": "/etc/V2bX/fullchain.cer",
-                "KeyFile": "/etc/V2bX/cert.key",
-                "Email": "v2bx@github.com",
-                "Provider": "cloudflare",
-                "DNSEnv": {
-                    "EnvName": "env1"
-                }
-            }
-        }, {
-            "Core": "xray",
-            "ApiHost": "https://node.minijs.site",
-            "ApiKey": "sasuhkhkabsousaj",
-            "NodeID": 21,
-            "NodeType": "shadowsocks",
             "Timeout": 30,
             "ListenIP": "0.0.0.0",
             "SendIP": "0.0.0.0",
@@ -69,7 +43,7 @@
             "Core": "xray",
             "ApiHost": "https://nd.dofast.pro",
             "ApiKey": "lalallalalalalallala",
-            "NodeID": 46,
+            "NodeID": 33,
             "NodeType": "vmess",
             "Timeout": 30,
             "ListenIP": "0.0.0.0",
@@ -93,9 +67,9 @@
             }
         }, {
             "Core": "xray",
-            "ApiHost": "https://node.minijs.site",
-            "ApiKey": "sasuhkhkabsousaj",
-            "NodeID": 22,
+            "ApiHost": "https://nd.dofast.pro",
+            "ApiKey": "lalallalalalalallala",
+            "NodeID": 18,
             "NodeType": "shadowsocks",
             "Timeout": 30,
             "ListenIP": "0.0.0.0",
