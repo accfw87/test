@@ -13,8 +13,8 @@
     "settings": {
       "servers": [
         {
-          "address": "node-hk.nfdns.xyz",
-          "port": 38888,
+          "address": "node-sg.nfdns.xyz",
+          "port": 20955,
           "method": "chacha20-ietf-poly1305",
           "password": "991f0949-b51e-4d57-a60f-ff4dd044650b"
         }
