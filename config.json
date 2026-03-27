@@ -69,34 +69,7 @@
             }
         }, {
             "Core": "xray",
-            "ApiHost": "https://node.minijs.site",
-            "ApiKey": "sasuhkhkabsousaj",
-            "NodeID": 8,
-            "NodeType": "shadowsocks",
-            "Timeout": 30,
-            "ListenIP": "0.0.0.0",
-            "SendIP": "0.0.0.0",
-            "DeviceOnlineMinTraffic": 200,
-            "MinReportTraffic": 0,
-            "EnableProxyProtocol": false,
-            "EnableUot": true,
-            "EnableTFO": true,
-            "DNSType": "UseIPv4",
-            "CertConfig": {
-                "CertMode": "none",
-                "RejectUnknownSni": false,
-                "CertDomain": "example.com",
-                "CertFile": "/etc/V2bX/fullchain.cer",
-                "KeyFile": "/etc/V2bX/cert.key",
-                "Email": "v2bx@github.com",
-                "Provider": "cloudflare",
-                "DNSEnv": {
-                    "EnvName": "env1"
-                }
-            }
-        }, {
-            "Core": "xray",
-            "ApiHost": "https://node.minijs.site",
+            "ApiHost": "https://node.biumini.xyz",
             "ApiKey": "sasuhkhkabsousaj",
             "NodeID": 51,
             "NodeType": "shadowsocks",
@@ -123,7 +96,7 @@
             }
         }, {
             "Core": "xray",
-            "ApiHost": "https://node.minijs.site",
+            "ApiHost": "https://node.biumini.xyz",
             "ApiKey": "sasuhkhkabsousaj",
             "NodeID": 52,
             "NodeType": "shadowsocks",
