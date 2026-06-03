@@ -58,21 +58,6 @@ for cmd in curl python3 systemctl; do
     fi
 done
 
-# 自动安装 file 命令（很多 VPS 默认没有）
-if ! command -v file &> /dev/null; then
-    info "未检测到 file 命令，正在自动安装..."
-    if command -v apt &> /dev/null; then
-        apt update -qq && apt install -y file >/dev/null 2>&1
-    elif command -v yum &> /dev/null; then
-        yum install -y file >/dev/null 2>&1
-    elif command -v dnf &> /dev/null; then
-        dnf install -y file >/dev/null 2>&1
-    fi
-    if ! command -v file &> /dev/null; then
-        warn "file 命令安装失败，将使用 readelf 检测架构"
-    fi
-fi
-
 # ============== 收集用户输入（环境变量优先，缺失则问） ==============
 step "收集配置信息（环境变量优先）"
 
@@ -130,24 +115,7 @@ step "Step 1/4: 安装 soga v2.13.7"
 bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/soga/master/install.sh) 2.13.7
 info "soga 安装完成 ✓"
 
-# 检查二进制是否是 x86_64（防止 install.sh 装了 ARM 版）
-# 优先用 file，失败则用 readelf
-check_arch_ok=0
-if command -v file &> /dev/null; then
-    file /usr/local/soga/soga | grep -q "x86-64" && check_arch_ok=1
-elif command -v readelf &> /dev/null; then
-    readelf -h /usr/local/soga/soga 2>/dev/null | grep -q "Advanced Micro Devices X86-64" && check_arch_ok=1
-else
-    # 都没有，跳过检查（uname -m 已经确认是 x86_64，相信 install.sh）
-    warn "缺少 file 和 readelf，跳过二进制架构验证"
-    check_arch_ok=1
-fi
-
-if [ "$check_arch_ok" != "1" ]; then
-    error "/usr/local/soga/soga 不是 x86_64 二进制，patch.py 无法使用"
-    exit 1
-fi
-info "二进制架构验证通过 ✓"
+# uname -m 已经在 Step 0 确认是 x86_64，install.sh 会按架构下载，相信它
 
 # ============== Step 2: 下载并应用 patch ==============
 step "Step 2/4: 下载并应用 patch.py"
