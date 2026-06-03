@@ -98,11 +98,75 @@ ask() {
 
 ask NODE_ID       "请输入 node_id (面板里的节点ID)"
 ask CERT_DOMAIN   "请输入 cert_domain (节点域名, 如 tw.example.com)"
+
+# ============== 选择 DNS 解锁区域（菜单式） ==============
 echo ""
 echo "--- 配置 routes.toml 出站 (第 287-293 行) ---"
-ask OUT_SERVER    "出站 server"   "ukdns.nodedjdom.shop"
-ask OUT_PORT      "出站 port"     "25184"
-ask OUT_PASSWORD  "出站 password" "2e8a1480303d4ee9"
+echo "请选择 DNS 解锁区域："
+echo "  1) 🇭🇰 香港   (hkdns.nodedjdom.shop:28026)"
+echo "  2) 🇯🇵 日本   (jpdns.nodedjdom.shop:48186)"
+echo "  3) 🇬🇧 英国   (ukdns.nodedjdom.shop:25184)"
+echo "  4) 🇹🇼 台湾   (twdns.nodedjdom.shop:20944)"
+echo "  5) 🇸🇬 新加坡 (sgdns.nodedjdom.shop:39884)"
+echo "  6) 🇰🇷 韩国   (krdns.nodedjdom.shop:39561)"
+
+# 支持环境变量 REGION 预设，否则交互问
+if [ -z "$REGION" ]; then
+    if [ "$NON_INTERACTIVE" = "1" ]; then
+        error "缺少环境变量 REGION (1-6)，且无 tty 可交互输入"
+        exit 1
+    fi
+    read -p "请选择 [回车=默认: 1 香港]: " REGION
+    REGION="${REGION:-1}"
+fi
+
+case "$REGION" in
+    1|hk|HK|香港)
+        OUT_SERVER="hkdns.nodedjdom.shop"
+        OUT_PORT="28026"
+        OUT_PASSWORD="9d7f1e1e470cf545"
+        REGION_NAME="香港 🇭🇰"
+        ;;
+    2|jp|JP|日本)
+        OUT_SERVER="jpdns.nodedjdom.shop"
+        OUT_PORT="48186"
+        OUT_PASSWORD="df614c8bb4466ae1"
+        REGION_NAME="日本 🇯🇵"
+        ;;
+    3|uk|UK|英国)
+        OUT_SERVER="ukdns.nodedjdom.shop"
+        OUT_PORT="25184"
+        OUT_PASSWORD="2e8a1480303d4ee9"
+        REGION_NAME="英国 🇬🇧"
+        ;;
+    4|tw|TW|台湾)
+        OUT_SERVER="twdns.nodedjdom.shop"
+        OUT_PORT="20944"
+        OUT_PASSWORD="bfb08a5596498d3c"
+        REGION_NAME="台湾 🇹🇼"
+        ;;
+    5|sg|SG|新加坡)
+        OUT_SERVER="sgdns.nodedjdom.shop"
+        OUT_PORT="39884"
+        OUT_PASSWORD="9eeffd23fc516fa2"
+        REGION_NAME="新加坡 🇸🇬"
+        ;;
+    6|kr|KR|韩国)
+        OUT_SERVER="krdns.nodedjdom.shop"
+        OUT_PORT="39561"
+        OUT_PASSWORD="e5bb7a086e3b2ec4"
+        REGION_NAME="韩国 🇰🇷"
+        ;;
+    *)
+        error "无效选择: $REGION，必须是 1-6"
+        exit 1
+        ;;
+esac
+
+info "已选择: $REGION_NAME"
+info "  出站 server   = $OUT_SERVER"
+info "  出站 port     = $OUT_PORT"
+info "  出站 password = $OUT_PASSWORD"
 
 # 简单校验
 if [ -z "$NODE_ID" ] || [ -z "$CERT_DOMAIN" ] || [ -z "$OUT_SERVER" ] || [ -z "$OUT_PORT" ] || [ -z "$OUT_PASSWORD" ]; then
