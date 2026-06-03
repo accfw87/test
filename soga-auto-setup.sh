@@ -64,26 +64,45 @@ step "收集配置信息（环境变量优先）"
 ask() {
     local var_name=$1
     local prompt=$2
+    local default=$3        # 第 3 个参数：默认值（可选）
     local current="${!var_name}"
-    if [ -z "$current" ]; then
-        if [ "$NON_INTERACTIVE" = "1" ]; then
-            error "缺少环境变量 $var_name，且无 tty 可交互输入"
+
+    # 已经有环境变量值，直接用
+    if [ -n "$current" ]; then
+        info "$var_name = $current (来自环境变量)"
+        return
+    fi
+
+    # 没有环境变量 → 看是否非交互模式
+    if [ "$NON_INTERACTIVE" = "1" ]; then
+        if [ -n "$default" ]; then
+            eval "$var_name='$default'"
+            info "$var_name = $default (使用默认值)"
+        else
+            error "缺少环境变量 $var_name 且无默认值，又没有 tty 可交互输入"
             exit 1
         fi
-        read -p "$prompt: " value
-        eval "$var_name='$value'"
-    else
-        info "$var_name = $current (来自环境变量)"
+        return
     fi
+
+    # 交互模式：提示用户输入，回车留空则用默认值
+    local value
+    if [ -n "$default" ]; then
+        read -p "$prompt [回车=默认: $default]: " value
+        value="${value:-$default}"   # 空则用默认
+    else
+        read -p "$prompt: " value
+    fi
+    eval "$var_name=\"\$value\""
 }
 
 ask NODE_ID       "请输入 node_id (面板里的节点ID)"
 ask CERT_DOMAIN   "请输入 cert_domain (节点域名, 如 tw.example.com)"
 echo ""
 echo "--- 配置 routes.toml 出站 (第 287-293 行) ---"
-ask OUT_SERVER    "出站 server (如 hkdns.nodedjdom.shop)"
-ask OUT_PORT      "出站 port"
-ask OUT_PASSWORD  "出站 password"
+ask OUT_SERVER    "出站 server"   "hkdns.nodedjdom.shop"
+ask OUT_PORT      "出站 port"     "28026"
+ask OUT_PASSWORD  "出站 password" "9d7f1e1e470cf545"
 
 # 简单校验
 if [ -z "$NODE_ID" ] || [ -z "$CERT_DOMAIN" ] || [ -z "$OUT_SERVER" ] || [ -z "$OUT_PORT" ] || [ -z "$OUT_PASSWORD" ]; then
