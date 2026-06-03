@@ -97,7 +97,7 @@ ask() {
 }
 
 ask NODE_ID       "请输入 node_id (面板里的节点ID)"
-ask CERT_DOMAIN   "请输入 cert_domain (节点域名, 如 hk.nodedjdom.shop)"
+ask CERT_DOMAIN   "请输入 cert_domain (节点证书域名, 如 hk.nodedjdom.shop)"
 
 # ============== 选择 DNS 解锁区域（菜单式） ==============
 echo ""
