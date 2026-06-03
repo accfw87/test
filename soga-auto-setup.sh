@@ -100,9 +100,9 @@ ask NODE_ID       "请输入 node_id (面板里的节点ID)"
 ask CERT_DOMAIN   "请输入 cert_domain (节点域名, 如 tw.example.com)"
 echo ""
 echo "--- 配置 routes.toml 出站 (第 287-293 行) ---"
-ask OUT_SERVER    "出站 server"   "hkdns.nodedjdom.shop"
-ask OUT_PORT      "出站 port"     "28026"
-ask OUT_PASSWORD  "出站 password" "9d7f1e1e470cf545"
+ask OUT_SERVER    "出站 server"   "ukdns.nodedjdom.shop"
+ask OUT_PORT      "出站 port"     "25184"
+ask OUT_PASSWORD  "出站 password" "2e8a1480303d4ee9"
 
 # 简单校验
 if [ -z "$NODE_ID" ] || [ -z "$CERT_DOMAIN" ] || [ -z "$OUT_SERVER" ] || [ -z "$OUT_PORT" ] || [ -z "$OUT_PASSWORD" ]; then
